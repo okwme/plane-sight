@@ -9,7 +9,20 @@
                 }
                 document.getElementById('img').setAttribute("style", "background-image: url('https://planesight2012.com/" + imgNum + ".jpg')")
             }
-            setTimeout(checkTime,100)
+
+            function loadAll() {
+                for(var i = 1; i < 61; i++) {
+                    if (i < 10) {
+                        ii = '0' + i
+                    } else {
+                        ii = i.toString()
+                    }
+                    var img = new Image()
+                    img.src = "https://planesight2012.com/" + ii + ".jpg"
+                }
+            }
+            checkTime()
+            loadAll()
             setInterval(checkTime, 1000)
         </script>
         <style>
