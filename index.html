@@ -1,34 +1,14 @@
 <html>
     <head>
-        <script>
-            function checkTime() {
-                var date = new Date()
-                var imgNum = date.toString().split(" ")[4].split(":")[1]
-                if (imgNum.length === 1) {
-                    imgNum = "0" + imgNum
-                }
-                document.getElementById('img').setAttribute("style", "background-image: url('https://planesight2012.com/" + imgNum + ".jpg')")
-            }
-
-            function loadAll() {
-                for(var i = 1; i < 61; i++) {
-                    if (i < 10) {
-                        ii = '0' + i
-                    } else {
-                        ii = i.toString()
-                    }
-                    var img = new Image()
-                    img.src = "https://planesight2012.com/" + ii + ".jpg"
-                }
-            }
-            checkTime()
-            loadAll()
-            setInterval(checkTime, 1000)
-        </script>
+       
         <style>
             body, html {
                 margin: 0;
                 padding: 0;
+            }
+            img {
+                position: absolute;
+                opacity:0;
             }
             #img {
                 width: 100vw;
@@ -36,7 +16,6 @@
                 position:absolute;
                 top:0px;
                 left:0px;
-                z-index:1;
                 background-position: center center;
                 background-repeat: no-repeat;
                 background-size: cover;
@@ -46,5 +25,25 @@
     </head>
     <body>
         <div id="img"></div>
+        <script>
+            function checkTime() {
+                var date = new Date()
+                var i = parseInt(date.toString().split(" ")[4].split(":")[1])
+                i++
+                var ii = i < 10 ? "0" + i : i.toString()
+                document.getElementById('img').setAttribute("style", "background-image: url('/" + ii + ".jpg')")
+            }
+            function loadAll() {
+                for(var i = 1; i < 61; i++) {
+                    var ii = i < 10 ? "0" + i : i.toString()
+                    var img = document.createElement("img")
+                    img.setAttribute("src", "/" + ii + ".jpg")
+                    document.body.appendChild(img)
+                }
+            }
+            checkTime()
+            loadAll()
+            setInterval(checkTime, 1000)
+        </script>
     </body>
 </html>
