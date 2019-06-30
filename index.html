@@ -7,7 +7,7 @@
                 if (imgNum.length === 1) {
                     imgNum = "0" + imgNum
                 }
-                document.getElementById('img').setAttribute("src", "https://plane-sight.netlify.com/" + imgNum + ".jpg")
+                document.getElementById('img').setAttribute("style", "background-image: url('https://plane-sight.netlify.com/" + imgNum + ".jpg')")
             }
             setTimeout(checkTime,100)
             setInterval(checkTime, 1000)
@@ -17,13 +17,21 @@
                 margin: 0;
                 padding: 0;
             }
-            img {
+            #img {
                 width: 100vw;
+                height:100vh;
+                position:absolute;
+                top:0px;
+                left:0px;
+                z-index:1;
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
             }
         </style>
         <title>Plane Sight, 2012 - Billy Rennekamp</title>
     </head>
     <body>
-        <img src="#" id="img"></img>
+        <div id="img"></div>
     </body>
 </html>
