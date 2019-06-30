@@ -1,19 +1,13 @@
 <html>
     <head>
         <script>
-        
-            var img = document.createElement("img")
-            img.setAttribute("id", "img")
-
-            document.getElementById('app').appendChild(img)
-            //alert(document.getElementById('app').innerHtml)
             function checkTime() {
                 var date = new Date()
                 var imgNum = date.toString().split(" ")[4].split(":")[1]
                 if (imgNum.length === 1) {
                     imgNum = "0" + imgNum
                 }
-                img.setAttribute("src", "https://plane-sight.netlify.com/" + imgNum + ".jpg")
+                document.getElementById('img').setAttribute("src", "https://plane-sight.netlify.com/" + imgNum + ".jpg")
             }
             setTimeout(checkTime,100)
             setInterval(checkTime, 1000)
@@ -30,6 +24,6 @@
         <title>Plane Sight, 2012 - Billy Rennekamp</title>
     </head>
     <body>
-        <div id="app"></div>
+        <img src="#" id="img"></img>
     </body>
 </html>
