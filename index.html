@@ -9,6 +9,8 @@
             img {
                 position: absolute;
                 opacity:0;
+                width:0;
+                height:0;
             }
             #img {
                 width: 100vw;
@@ -22,16 +24,30 @@
             }
         </style>
         <title>Plane Sight, 2012 - Billy Rennekamp</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     </head>
     <body>
         <div id="img"></div>
         <script>
+            var firstLoaded = false
             function checkTime() {
                 var date = new Date()
                 var i = parseInt(date.toString().split(" ")[4].split(":")[1])
                 i++
                 var ii = i < 10 ? "0" + i : i.toString()
-                document.getElementById('img').setAttribute("style", "background-image: url('/" + ii + ".jpg')")
+                var iii = document.getElementById('img').getAttribute('data-i')
+                if (!firstLoaded) {
+                    var img = new Image()
+                    img.onload = function() {
+                        firstLoaded = true
+                        loadAll()
+                    }
+                    img.src = '/' + ii + '.jpg'
+                }
+                if (iii !== ii) {
+                    document.getElementById('img').setAttribute("style", "background-image: url('/" + ii + ".jpg')")
+                    document.getElementById('img').setAttribute('data-i', ii)
+                }
             }
             function loadAll() {
                 for(var i = 1; i < 61; i++) {
@@ -42,7 +58,7 @@
                 }
             }
             checkTime()
-            loadAll()
+            // setTimeout(loadAll, 2000)
             setInterval(checkTime, 1000)
         </script>
     </body>
